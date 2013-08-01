@@ -8,6 +8,7 @@ $config = array(
     // The directory where PEAR is located
     'pear_path'      => '/usr/share/pear',
 
+
     // The directories where the tests reside
     'test_directories' => array(
         "{$root}/app/test"
@@ -15,6 +16,8 @@ $config = array(
 
 
     /* Optional */
+    // Whether to use Composer over Pear (need to run composer install)
+    'use_composer' => true,
 
     // Whether or not to store the statistics in a database
     // (these statistics will be used to generate graphs)
@@ -80,16 +83,20 @@ set_include_path(
     . PATH_SEPARATOR . $config['pear_path']
 );
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Util/Log/JSON.php';
+if ($config['use_composer']) {
+    require "$root/vendor/autoload.php";
+} else {
+    require_once 'PHPUnit/Autoload.php';
+    require_once 'PHPUnit/Util/Log/JSON.php';
 
-spl_autoload_register(function($class) use ($root) {
-    $class = str_replace('\\', '/', $class);
-    $file = "{$root}/{$class}.php";
-    if ( file_exists($file) ) {
-        require $file;
-    }
-});
+    spl_autoload_register(function($class) use ($root) {
+        $class = str_replace('\\', '/', $class);
+        $file = "{$root}/{$class}.php";
+        if ( file_exists($file) ) {
+            require $file;
+        }
+    });
+}
 
 foreach ( $config['bootstraps'] as $bootstrap ) {
     require $bootstrap;
