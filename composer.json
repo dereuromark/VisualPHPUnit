@@ -1,8 +1,14 @@
 {
+    "name": "dereuromark/VisualPHPUnit",
+    "description": "VisualPHPUnit web test runner for PHPUnit",
+    "type": "library",
+    "require": {
+        "php": ">=5.3"
+    },
     "require-dev": {
-    "phpunit/phpunit": "3.7.*",
-    "phpunit/phpunit-selenium": ">=1.2",
-    "phpunit/phpunit-story": "*"
+        "phpunit/phpunit": "3.*",
+        "phpunit/phpunit-selenium": ">=1.2",
+        "phpunit/phpunit-story": "*"
     },
     "autoload": {
         "psr-0": {
@@ -10,5 +16,4 @@
             "app": ""
         }
     }
-
 }
