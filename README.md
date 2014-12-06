@@ -41,6 +41,8 @@ While no longer actively supported, v1.x can be found on its [own branch](https:
 ## Installation
 
 1. Download and extract (or git clone) the project to a web-accessible directory.
+   Also run `composer install` to install dependencies.
+
 2. Change the permissions of `app/resource/cache` to `777`.
 3. Open `app/config/bootstrap.php` with your favorite editor.
     1. Within the `$config` array, change `pear_path` so that it points to the directory where PEAR is located.
